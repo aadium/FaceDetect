@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 
 fileName = input("Please enter the name of the file: ")
 type = input("Please enter the file extension: ")
+
 # Load image (LOAD)
 img = cv2.imread('images/' + fileName + '.' + type)
 
