@@ -10,6 +10,12 @@ img = cv2.imread('images/' + fileName)
 # Convert image to grayscale
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
+# Apply noise reduction
+gray = cv2.GaussianBlur(gray, (5,5), 0)
+
+# Apply image normalization
+gray = cv2.normalize(gray, None, alpha=0, beta=255, norm_type=cv2.NORM_MINMAX)
+
 # Preprocess image
 gray = cv2.equalizeHist(gray)
 
