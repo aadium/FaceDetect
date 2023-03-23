@@ -10,20 +10,16 @@ img = cv2.imread('images/' + fileName)
 # Convert image to grayscale
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-# Apply noise reduction
+# Apply noise reduction and contrast stretching
 gray = cv2.GaussianBlur(gray, (5,5), 0)
-
-# Apply image normalization
-gray = cv2.normalize(gray, None, alpha=0, beta=255, norm_type=cv2.NORM_MINMAX)
-
-# Preprocess image
-gray = cv2.equalizeHist(gray)
+clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8,8))
+gray = clahe.apply(gray)
 
 # Load Haar Cascade classifier
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
 # Detect faces in image (AIM)
-faces = face_cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5)
+faces = face_cascade.detectMultiScale(gray, scaleFactor=1.3, minNeighbors=5)
 
 # If faces are detected, draw rectangles around them and display the number of faces detected
 if len(faces) > 0:
