@@ -21,7 +21,7 @@ face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 # Detect faces in image (AIM)
 faces = face_cascade.detectMultiScale(gray, scaleFactor=1.3, minNeighbors=5)
 
-# If faces are detected, draw rectangles around them and display the number of faces detected
+# If faces are detected, draw rectangles around them and display the number of faces detected (SHOOT)
 if len(faces) > 0:
     for (x,y,w,h) in faces:
         cv2.rectangle(img, (x,y), (x+w,y+h), (0,0,255), 10)
